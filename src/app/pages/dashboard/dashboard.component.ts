@@ -12,11 +12,13 @@ import { Aplicacion } from '../../models/aplicacion.model';
 export class DashboardComponent implements OnInit {
 
   aplicaciones: Aplicacion[] = [];
+  app : Aplicacion[] = [];
 
   constructor( public _aplicacionService: AplicacionService ) { }
 
   ngOnInit() {
     this.cargarAplicaciones();
+    //this.irUrl();
 
   }
 
@@ -27,13 +29,15 @@ export class DashboardComponent implements OnInit {
           });
   }
 
-  irUrl() {
-    this._aplicacionService.cargarAplicaciones()
-              .subscribe( (resp: any) => {
-                //this.aplicaciones = resp.aplicaciones;
-                console.log(resp);
-              });
+  // irUrl() {
 
-  }
+  //   this._aplicacionService.cargarAplicaciones()
+  //             .subscribe( (resp: any) => {
+  //             this.app = resp.aplicaciones.url;
+
+  //              // console.log(this.app);
+  //             });
+
+  // }
 
 }

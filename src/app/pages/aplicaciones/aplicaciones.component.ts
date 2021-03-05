@@ -15,6 +15,9 @@ import swal from 'sweetalert';
 export class AplicacionesComponent implements OnInit {
 
   aplicaciones: Aplicacion[] = [];
+  desde: number = 0;
+  cargando: boolean = true;
+  totalRegistros: number = 0;
 
   constructor( public _aplicacionService: AplicacionService,
                public _modalUploadService: ModalUploadService
@@ -69,6 +72,23 @@ export class AplicacionesComponent implements OnInit {
   actualizarImg( aplicacion: Aplicacion ) {
         this._modalUploadService.mostarModal( 'aplicaciones', aplicacion._id );
   }
+
+
+  cambiarDesde( valor: number ) {
+    const desde = this.desde + valor;
+    console.log(desde);
+
+    if ( desde >= this.totalRegistros ) {
+        return;
+    }
+
+    if ( desde < 0 ) {
+      return;
+    }
+
+    this.desde += valor;
+    this.cargarAplicaciones();
+}
 
 
 }

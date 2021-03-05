@@ -1,10 +1,14 @@
 <div class="container-fluid">
     <div class="row el-element-overlay">
-        <div *ngFor="let aplicacion of aplicaciones" class="col-lg-3 col-md-6">
+        <div *ngFor="let aplicacion of aplicaciones" class="col-lg-3 col-md-4">
             <div class="card">
+                <span class="border border-primary">
+                <br>
+
                 <div class="el-card-item">
-                    <div class="el-card-avatar el-overlay-1">
-                        <img (click)="'aplicacion.url'" [src]=" aplicacion.img | imagen: 'aplicacion'" class="img-50 pointer">
+                    <div class="el-card-avatar" align="center">
+                        <img (click)="'aplicacion.url'" [src]=" aplicacion.img | imagen: 'aplicacion'" class="imgAp-50 pointer rounded-circle">
+                        <!-- <a href='aplicacion.url'>My Link</a> -->
                         <!-- <h3>{{aplicacion.url}}</h3> -->
                     </div>
                     <div class=" el-card-content ">
@@ -13,9 +17,9 @@
                                 <font style="vertical-align: inherit; ">{{aplicacion.nombre}}</font>
                             </font>
                         </h3>
-                        <br>
                     </div>
                 </div>
+                </span>
             </div>
         </div>
     </div>

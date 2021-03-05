@@ -4,15 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { Router } from '@angular/router';
 import { SubirImgService } from '../uploadImg/subir-img.service';
-
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-
 import swal from 'sweetalert';
-
-
 @Injectable()
 export class UsuarioService {
 
@@ -29,7 +25,6 @@ export class UsuarioService {
   renuevaToken() {
     let url = URL_SERVICIOS + '/login/renuevaToken';
     url += '?token=' + this.token;
-
     return this.http.get( url )
                 .map( (resp: any) => {
                       this.token = resp.token;
@@ -87,22 +82,20 @@ export class UsuarioService {
   login( usuario: Usuario, remember: boolean = false ) {
 
       if ( remember ) {
-                        localStorage.setItem('email', usuario.email);
+        localStorage.setItem('email', usuario.email);
       }else {
-                        localStorage.removeItem('email');
+        localStorage.removeItem('email');
       }
-
-
     const url = URL_SERVICIOS + '/login';
     return this.http.post( url, usuario )
-                                          .map( (resp: any) => {
-                                            this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu );
-                                            return true;
-                                          })
-                                          .catch( err => {
-                                            swal( 'Error al Loguearse', err.error.message, 'error' );
-                                            return Observable.throw( err );
-                                          });
+        .map( (resp: any) => {
+           this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu );
+           return true;
+         })
+        .catch( err => {
+           swal( 'Error al Loguearse', err.error.message, 'error' );
+           return Observable.throw( err );
+         });
   }
 
   crearUsuario( usuario: Usuario ) {
